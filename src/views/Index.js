@@ -16,7 +16,7 @@
 
 */
 import React from "react";
-
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import PageHeader from "components/PageHeader/PageHeader.js";
@@ -34,8 +34,73 @@ import NucleoIcons from "views/IndexSections/NucleoIcons.js";
 import Signup from "views/IndexSections/Signup.js";
 import Examples from "views/IndexSections/Examples.js";
 import Download from "views/IndexSections/Download.js";
+import LandingPage from "./examples/LandingPage";
+import RegisterPage from "views/examples/RegisterPage.js";
+import LoginPage from "views/examples/LoginPage";
+import ProfilePage from "views/examples/ProfilePage.js";
+
+
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 export default function Index() {
+
+  const [isAuth, setIsAuth] = useState(false) //check if user is logged in or not
+  const [user, setUser] = useState({}) //store user token
+  
+  useEffect(() => {
+    let token = localStorage.getItem('token')
+    if (token) {
+      let user = token
+        setIsAuth(true)
+        setUser(user)
+    }
+    else if (!user) {
+        localStorage.remove('token')
+        setIsAuth(false)
+      }
+  }, [])
+  const registerHandler = (user) => {
+    axios.post('http://127.0.0.1:8000/auth/register/', user)
+      .then(res => {
+        console.log('registerhandler response: ', res)
+        if(res.status == 204)
+        window.location.pathname = '/signin'
+      }).catch(err => {
+        console.log(err)
+      })
+
+  }
+
+  const loginHandler = (credintials) => {
+    axios.post('http://127.0.0.1:8000/auth/login/', credintials)
+      .then(res => {
+        console.log("user has logged in. Token: ", res.data.key)
+        //store the token in our local storage
+        let token = res.data.key
+        if (token != null) {
+          localStorage.setItem("token", token) //create a local storage with the name token
+          let user = token
+          // let response = axios.get(`http://127.0.0.1:8000/auth/${credintials['username']}/profile/`)
+          setIsAuth(true)
+          setUser(user)
+          // event.preventDefault()
+          window.location.pathname = '/'
+        }
+      }).catch(err => {
+        console.log(err.message)
+      })
+  }
+  const logoutHandler = (e) => {
+    console.log('logged in user was: ', user)
+    e.preventDefault() //don't execute this code on page refersh
+    localStorage.removeItem('token')
+    setIsAuth(false)
+    setUser(null)
+    console.log('user logged out successfully. Token has been removed')
+  }
+
+
   React.useEffect(() => {
     document.body.classList.toggle("index-page");
     // Specify how to clean up after this effect:
@@ -45,13 +110,24 @@ export default function Index() {
   }, []);
   return (
     <>
+
+
+      {/* <Route path="/landing-page" element={<LandingPage />} />
+      <Route path="/register-page" element={<RegisterPage />} />
+      <Route path="/login-page" element={<LoginPage />} />
+      <Route path="/profile-page" element={<ProfilePage />} />
+      
+      <Route path="*" element={<Navigate to="/components" replace />} /> */}
+
       <IndexNavbar />
       <div className="wrapper">
         <PageHeader />
-        <div className="main">
-          <Basics />
+        <div >
+        <Download />
+       {/* <LandingPage/>
+          { <Basics />
           <Navbars />
-          <Tabs />
+       <Tabs />
           <Pagination />
           <Notifications />
           <Typography />
@@ -59,8 +135,9 @@ export default function Index() {
           <NucleoIcons />
           <Signup />
           <Examples />
-          <Download />
+          <Download /> */}
         </div>
+        
         <Footer />
       </div>
     </>

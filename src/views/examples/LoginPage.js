@@ -15,8 +15,10 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, {useState} from "react";
+import React, { useState,useEffect } from "react";
 import classnames from "classnames";
+import axios from 'axios';
+
 // reactstrap components
 import {
   Button,
@@ -38,30 +40,26 @@ import {
   Col,
 } from "reactstrap";
 
-
 // core components
 import PageHeader from "components/Navbars/IndexNavbar";
 import Footer from "components/Footer/Footer.js";
 
-export default function RegisterPage(props) {
-   //Set state for the user into new user
-   const [newuser, setNewUser] = useState({});
-   //Function to handle any change in value of fields
-   const changeHandler = (e) => {
-       //Set copy of newuser into user every time
-       const user = { ...newuser }
-       //Set key with value for fields sent in the form
-       user[e.target.name] = e.target.value
-       console.log('user', user)
-       //Set user to new user
-       setNewUser(user)
-   }
-   //Function to pass the new user after click
-   const registerHandler = (event) => {
-       event.preventDefault()
-       props.register(newuser)
+export default function LoginPage(props) {
+  //initialize state
 
-   }
+  const [newUser, setNewUser] = useState({}) //new user is going to be an object
+      //to get whatever the user is writing instantly
+      const changeHandler = (e) => {
+        const user = { ...newUser } //copying what's in newUser to the user const EVERYTIME a user write anything and add changes
+        user[e.target.name] = e.target.value //user[the filed where we currently in] = [the value of this input field]
+        console.log(user)
+        setNewUser(user) //set the newUser value to be what's in the variable user
+    }
+    //when the submit button clicked
+    const loginHandler = (event) => {
+      props.login(newUser)
+  }
+
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
   React.useEffect(() => {
@@ -114,40 +112,29 @@ export default function RegisterPage(props) {
                   <Card className="card-register">
                     <CardHeader>
 
-                      <CardTitle tag="h4" color="white">Register</CardTitle>
+                      <CardTitle tag="h4" color="white">Login</CardTitle>
                     </CardHeader>
                     <CardBody>
+
                       <Form className="form">
-                        <InputGroup>
-                          <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="tim-icons icon-single-02" />
-                            </InputGroupText>
-                          </InputGroupAddon>
-                          <Input
-                            placeholder="User name"
-                            type="text"
-                            name="username" onChange={changeHandler}
-                          />
-                        </InputGroup>
-                        {/* <InputGroup
-                          className={classnames({
-                            "input-group-focus": emailFocus,
-                          })}
-                        >
-                          <InputGroupAddon addonType="prepend">
+
+                          {/* <InputGroupAddon addonType="prepend">
                             <InputGroupText>
                               <i className="tim-icons icon-email-85" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
-                            placeholder="Email"
+                            placeholder="Username"
                             type="text"
                             onFocus={(e) => setEmailFocus(true)}
                             onBlur={(e) => setEmailFocus(false)}
                           />
-                        </InputGroup> */}
-                        <InputGroup>
+                        </InputGroup>
+                        <InputGroup
+                          className={classnames({
+                            "input-group-focus": passwordFocus,
+                          })}
+                        >
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
                               <i className="tim-icons icon-lock-circle" />
@@ -155,30 +142,46 @@ export default function RegisterPage(props) {
                           </InputGroupAddon>
                           <Input
                             placeholder="Password"
-                            type="password" name="password1" onChange={changeHandler}
-
+                            type="text"
+                            onFocus={(e) => setPasswordFocus(true)}
+                            onBlur={(e) => setPasswordFocus(false)}
                           />
-                          <input type="hidden" name="password" value={newuser['password1']}></input>
-                        </InputGroup>
-                        <InputGroup>
-                          <InputGroupAddon addonType="prepend">
+                        </InputGroup> */}
+                  <div>
+                    <InputGroup>
+                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
-                              <i className="tim-icons icon-lock-circle" />
+                              <i className="tim-icons icon-email-85" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
-                            placeholder="Confirm Password"
-                            type="password" name="password2" onChange={changeHandler}
-
+                            placeholder="Username"
+                            type="text"
+                            name='username' onChange={changeHandler}
+                          />
+                        </InputGroup>
+                </div>
+                <div>
+                <InputGroup>
+                           <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
+                            <i className="tim-icons icon-lock-circle" />
+                            </InputGroupText>
+                          </InputGroupAddon>
+                          <Input
+                            placeholder="Password"
+                            type="password"
+                            name='password' onChange={changeHandler}
                           />
                         </InputGroup>
 
+                </div>
                       </Form>
                     </CardBody>
                     <CardFooter>
+                      <Button className="btn-round" color="primary" size="lg" onClick={loginHandler}>Login</Button>
+                      <p>Don't have an account? <a href='/register-page'>Register</a></p>
 
-                      <Button className="btn-round" color="primary" size="lg" onClick={registerHandler}>Sign Up</Button>
-                <p>Already have an account? <a href='/login-page'>Sign In</a></p>
                     </CardFooter>
                   </Card>
                 </Col>
@@ -215,6 +218,21 @@ export default function RegisterPage(props) {
                 style={{ transform: squares1to6 }}
               />
             </Container>
+            {/* <Container>
+                <Form.Group>
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control name='username' onChange={changeHandler} placeholder="username"></Form.Control>
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control name='password' type='password' onChange={changeHandler} placeholder="password"></Form.Control>
+                    <p>Forget your Password? <a href='#'>Click here</a></p>
+
+                </Form.Group>
+                <Button variant='primary' onClick={loginHandler}>Login</Button>
+                <p>Don't have an account? <a href='/signup'>Register</a></p>
+
+            </Container> */}
           </div>
         </div>
         <Footer />

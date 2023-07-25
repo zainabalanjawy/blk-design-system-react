@@ -16,95 +16,242 @@
 
 */
 import React from "react";
+import Aboutus from '../../components/Footer/Footer'
 // reactstrap components
 import { Button, Container, Row, Col, UncontrolledTooltip } from "reactstrap";
+import {
+  
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  CardTitle,
+  ListGroupItem,
+  ListGroup,
+ 
 
+} from "reactstrap";
+import { Link } from "react-router-dom";
 export default function Download() {
+  let zainab = "github.com/zainabalanjawy/Portfolio"
   return (
-    <div
-      className="section section-download"
-      data-background-color="black"
-      id="download-section"
-    >
-      <img alt="..." className="path" src={require("assets/img/path1.png")} />
-      <Container>
-        <Row className="justify-content-md-center">
-          <Col className="text-center" lg="8" md="12">
-            <h2 className="title">
-              Do you love this Bootstrap 4 React Design System?
-            </h2>
-            <h4 className="description">
-              Cause if you do, it can be yours for FREE. Hit the button below to
-              navigate to Creative Tim where you can find the design system in
-              React format. Start a new project or give an old Bootstrap project
-              a new look!
-            </h4>
-          </Col>
-          <Col className="text-center" lg="8" md="12">
-            <Button
-              className="btn-round"
-              color="info"
-              href="https://www.creative-tim.com/product/blk-design-system-react?ref=blkdsr-index-page-download-section"
-              role="button"
-              size="lg"
-            >
-              Download React
-            </Button>
-          </Col>
-        </Row>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <Row className="row-grid align-items-center my-md">
-          <Col lg="6">
-            <h3 className="text-info font-weight-light mb-2">
-              Thank you for supporting us!
-            </h3>
-            <h4 className="mb-0 font-weight-light">
-              Let's get in touch on any of these platforms.
-            </h4>
-          </Col>
-          <Col className="text-lg-center btn-wrapper" lg="6">
-            <Button
-              className="btn-icon btn-round"
-              color="twitter"
-              id="twitter"
-              size="lg"
-            >
-              <i className="fab fa-twitter" />
-            </Button>
-            <UncontrolledTooltip delay={0} target="twitter">
-              Tweet!
-            </UncontrolledTooltip>
-            <Button
-              className="btn-icon btn-round"
-              color="facebook"
-              id="facebook"
-              size="lg"
-            >
-              <i className="fab fa-facebook-square" />
-            </Button>
-            <UncontrolledTooltip delay={0} target="facebook">
-              Share!
-            </UncontrolledTooltip>
-            <Button
-              className="btn-icon btn-round"
-              color="github"
-              href="https://github.com/creativetimofficial"
-              id="tooltip877922017"
-              size="lg"
-              target="_blank"
-            >
-              <i className="fab fa-github" />
-            </Button>
-            <UncontrolledTooltip delay={0} target="tooltip877922017">
-              Star on Github
-            </UncontrolledTooltip>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+          <div className="wrapper">
+        <div className="page-header">
+          <div className="content-center">
+            <Row className="row-grid justify-content-between align-items-center text-left">
+              <Col lg="6" md="6">
+                <h1 className="text-white">
+                  Track your expanses<br />
+          
+                </h1>
+                <p className="text-white mb-3">
+                Managing your daily expenses has never been easier. 
+                Access all receipts and expense submissions from your 
+                Expenses dashboard and create, validate, or refuse them 
+                in just a click. 
+                </p>
+                <div className="btn-wrapper mb-3">
+                  <p className="category text-success d-inline">
+                    Read more
+                  </p>
+                  <Button
+                    className="btn-link"
+                    color="success"
+                    href="#pablo"
+                    // onClick={() => navigate('/Aboutus')}
+                    size="sm"
+                  >
+                    
+                    <i className="tim-icons icon-minimal-right" />
+                  </Button>
+                </div>
+              </Col>
+              <Col lg="4" md="5">
+                <img
+                  alt="..."
+                  className="img-fluid"
+                  src={require("assets/img/etherum.png")}
+                />
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <section className="section section-lg">
+ 
+          <Container>
+            <Row className="justify-content-center">
+              <Col lg="12">
+                <h1 className="text-center">Our main features</h1>
+                <Row className="row-grid justify-content-center">
+                  <Col lg="3">
+                    <div className="info">
+                      <div className="icon icon-primary">
+                        <i className="tim-icons icon-money-coins" />
+                      </div>
+                      <h4 className="info-title">Receipts Scanner</h4>
+                      <hr className="line-primary" />
+                      <p>
+                        Save your receipts by uploading them through 
+                        our scanner and create your expanses.
+                      </p>
+                    </div>
+                  </Col>
+                  <Col lg="3">
+                    <div className="info">
+                      <div className="icon icon-warning">
+                        <i className="tim-icons icon-chart-pie-36" />
+                      </div>
+                      <h4 className="info-title">Expenses Graphs</h4>
+                      <hr className="line-warning" />
+                      <p>
+                       Get a representation of a diagram that represents
+                      your expanses and categories.
+                      </p>
+                    </div>
+                  </Col>
+                  <Col lg="3">
+                    <div className="info">
+                      <div className="icon icon-success">
+                        <i className="tim-icons icon-single-02" />
+                      </div>
+                      <h4 className="info-title">Profile Setup</h4>
+                      <hr className="line-success" />
+                      <p>
+                        Setup your profile data and define your budget to 
+                        to manege your expanses.
+                      </p>
+                    </div>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </Container>
+        </section>
+        <section className="section-lg section-coins">
+
+          <Container>
+            <Row>
+              <Col md="4">
+                <hr className="line-info" />
+                <h1>
+                  Meet the team of{" "}
+                  <span className="text-info">Ekono</span>
+                </h1>
+              </Col>
+            </Row>
+            <Row>
+              <Col md="3">
+                <Card className="card-coin card-plain">
+                  <CardHeader>
+                    <img
+                      alt="..."
+                      className="img-center img-fluid"
+                      src={require("assets/img/zainab.png")}
+                    />
+                  </CardHeader>
+                  <CardBody>
+                    <Row>
+                      <Col className="text-center" md="12">
+                        <h4 className="text-uppercase">Zainab Al-Anjawi</h4>
+                        <span color="primary" className="primary">"Reach your life goals, one zero at a time."</span>
+                        <hr className="line-warning" />
+                      </Col>
+                    </Row>
+                    <Row>
+
+                    </Row>
+                  </CardBody>
+                  <CardFooter className="text-center">
+                    <Link to={`${zainab}`} />
+                  
+                    <Button className="btn-simple" color="warning">
+                      Github
+                      <a href="https://github.com/zainabalanjawy/Portfolio"/>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </Col>
+              <Col md="3">
+                <Card className="card-coin card-plain">
+                  <CardHeader>
+                    <img
+                      alt="..."
+                      className="img-center img-fluid"
+                      src={require("assets/img/etherum.png")}
+                    />
+                  </CardHeader>
+                  <CardBody>
+                    <Row>
+                      <Col className="text-center" md="12">
+                        <h4 className="text-uppercase">Jawaher Mohmmed</h4>
+                        <span>""</span>
+                        <hr className="line-success" />
+                      </Col>
+                    </Row>
+                  </CardBody>
+                  <CardFooter className="text-center">
+                    <Button className="btn-simple" color="success">
+                      Github
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </Col>
+              <Col md="3">
+                <Card className="card-coin card-plain">
+                  <CardHeader>
+                    <img
+                      alt="..."
+                      className="img-center img-fluid"
+                      src={require("assets/img/ripp.png")}
+                    />
+                  </CardHeader>
+                  <CardBody>
+                    <Row>
+                      <Col className="text-center" md="12">
+                        <h4 className="text-uppercase">Mariam Merza</h4>
+                        <span>""</span>
+                        <hr className="line-info" />
+                      </Col>
+                    </Row>
+                  </CardBody>
+                  <CardFooter className="text-center">
+                    <Button className="btn-simple" color="info">
+                      Github
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </Col>
+              <Col md="3">
+                <Card className="card-coin card-plain">
+                  <CardHeader>
+                    <img
+                      alt="..."
+                      className="img-center img-fluid"
+                      src={require("assets/img/ripp.png")}
+                    />
+                  </CardHeader>
+                  <CardBody>
+                    <Row>
+                      <Col className="text-center" md="12">
+                        <h4 className="text-uppercase">Fatima Mohmmed</h4>
+                        <span>"</span>
+                        <hr className="line-primary" />
+                      </Col>
+                    </Row>
+
+                  </CardBody>
+                  <CardFooter className="text-center">
+                    <Button className="btn-simple" color="primary">
+                      Github
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </Col>
+            </Row>
+          </Container>
+        </section>
+        {/* <Footer /> */}
+      </div>
   );
 }

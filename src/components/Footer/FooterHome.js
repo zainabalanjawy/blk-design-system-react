@@ -41,22 +41,32 @@ export default function Footer() {
           <Col md="3">
             <Nav>
               <NavItem>
-                <NavLink to="/" tag={Link}>
+                <NavLink to="/home-page" tag={Link}>
                   Home
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/login-page" tag={Link}>
-                  Login
+                <NavLink to="/dashboard" tag={Link}>
+                  Dashboard
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/register-page" tag={Link}>
-                  Register
+                <NavLink to="/Category/List" tag={Link}>
+                  Categories
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/uboutus" tag={Link}>
+                <NavLink to="/ViewAllRecipet" tag={Link}>
+                  Recipets
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="/Expenses/List" tag={Link}>
+                  Expanses
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="/aboutus" tag={Link}>
                   About US
                 </NavLink>
               </NavItem>

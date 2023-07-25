@@ -37,7 +37,7 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 
-export default function IndexNavbar() {
+export default function HomeNavbar(props) {
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
@@ -79,7 +79,7 @@ export default function IndexNavbar() {
     <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
       <Container>
         <div className="navbar-translate">
-          <NavbarBrand to="/" tag={Link} id="navbar-brand">
+          <NavbarBrand to="/home-page" tag={Link} id="navbar-brand">
             <img width="200px" src={logo}/>
           </NavbarBrand>
           <UncontrolledTooltip placement="bottom" target="navbar-brand">
@@ -131,16 +131,32 @@ export default function IndexNavbar() {
                 onClick={(e) => e.preventDefault()}
               >
                 <i className="fa fa-cogs d-lg-none d-xl-none" />
-                Getting started
+                Main Menu
               </DropdownToggle>
               <DropdownMenu className="dropdown-with-icons">
-                <DropdownItem tag={Link} to="/register-page">
-                  <i className="tim-icons icon-bullet-list-67" />
-                  Register
+                <DropdownItem tag={Link} to="/dashboard">
+                  <i className="tim-icons icon-chart-bar-32" />
+                  Dashboard
                 </DropdownItem>
-                <DropdownItem tag={Link} to="/login-page">
-                  <i className="tim-icons icon-single-02" />
-                  Login
+                <DropdownItem tag={Link} to="/Category/List">
+                  <i className="tim-icons  icon-bullet-list-67" />
+                  Categories
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/ViewAllRecipet">
+                  <i className="tim-icons icon-paper" />
+                  Recipets
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/Expenses/List">
+                  <i className="tim-icons icon-coins" />
+                  Expanses
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/profile" onClick={props.logout}>
+                  <i className="tim-icons icon-badge" />
+                  Profile
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/logout" onClick={props.logout}>
+                  <i className="tim-icons icon-alert-circle-exc" />
+                  Logout
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
